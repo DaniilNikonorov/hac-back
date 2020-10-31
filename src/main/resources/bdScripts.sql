@@ -6,7 +6,11 @@ create table "user"
     role        varchar(20)             not null,
     first_name  varchar(50)             NOT NULL,
     second_name varchar(50)             NOT NULL,
-    middle_name varchar(50)
+    middle_name varchar(50),
+    email varchar,
+    phone_number varchar,
+    edu varchar,
+    birthday varchar,
 );
 CREATE TABLE TEACHER
 (

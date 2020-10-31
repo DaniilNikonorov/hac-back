@@ -38,4 +38,9 @@ public class UserController {
     public void delete(@PathVariable String id) {
         service.delete(id);
     }
+
+    @PostMapping("save")
+    public User save(@RequestBody User user) {
+        return service.save(user);
+    }
 }

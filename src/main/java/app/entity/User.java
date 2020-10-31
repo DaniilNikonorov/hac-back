@@ -30,7 +30,19 @@ public class User {
     @Column(name = "second_name", nullable = false)
     private String secondName;
 
-    @Column(name = "middle_name", nullable = false)
+    @Column(name = "middle_name")
     private String middleName;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Column(name = "edu")
+    private String edu;
+
+    @Column(name = "birthday")
+    private String birthday;
 
 }
