@@ -22,6 +22,19 @@ public class TaskService {
     private final TaskRepository repository;
     private final TestTaskRepository testTaskRepository;
 
+    public List<TaskTeacherDto> getAll() {
+        return repository.findAll()
+                .stream()
+                .map(TaskService::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public void delete(String id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+        }
+    }
+
     public TaskTeacherDto save(TaskTeacherDto dto) {
         Task entity = toEntity(dto);
         List<TestTask> testTaskList = entity.getTestTaskList();

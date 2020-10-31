@@ -3,10 +3,9 @@ package app.controller;
 import app.dto.task.TaskTeacherDto;
 import app.service.TaskService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/task")
@@ -18,6 +17,16 @@ public class TaskController {
     @PostMapping("/save")
     TaskTeacherDto save(@RequestBody TaskTeacherDto dto) {
         return service.save(dto);
+    }
+
+    @GetMapping("/")
+    List<TaskTeacherDto> getAll() {
+        return service.getAll();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable String id) {
+        service.delete(id);
     }
 
 }
