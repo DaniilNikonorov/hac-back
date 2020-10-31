@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(schema = "public", name = "test_task")
-public class TestTask {
+public class TestCase {
 
     @Id
     @Column(name = "id", nullable = false)

@@ -29,7 +29,7 @@ public class Task {
 
 
     @OneToMany(mappedBy = "taskId")
-    private List<TestTask> testTaskList;
+    private List<TestCase> testCaseList;
 
     @ManyToMany
     @JoinTable(name = "task_class_cross",

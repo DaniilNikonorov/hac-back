@@ -5,14 +5,15 @@ import app.dto.testTask.TestTaskDto;
 import app.entity.ClassSchoolboy;
 import app.entity.Task;
 import app.entity.Teacher;
-import app.entity.TestTask;
+import app.entity.TestCase;
 import app.repository.TaskRepository;
-import app.repository.TestTaskRepository;
+import app.repository.TestCaseRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 public class TaskService {
 
     private final TaskRepository repository;
-    private final TestTaskRepository testTaskRepository;
+    private final TestCaseRepository testCaseRepository;
 
     public List<TaskTeacherDto> getAll() {
         return repository.findAll()
@@ -37,13 +38,18 @@ public class TaskService {
 
     public TaskTeacherDto save(TaskTeacherDto dto) {
         Task entity = toEntity(dto);
-        List<TestTask> testTaskList = entity.getTestTaskList();
-        entity.setTestTaskList(new ArrayList<>());
+        List<TestCase> testCaseList = entity.getTestCaseList();
+        entity.setTestCaseList(new ArrayList<>());
         repository.save(entity);
-        testTaskList.forEach(testTaskRepository::save);
-        entity.setTestTaskList(testTaskList);
+        testCaseList.forEach(testCaseRepository::save);
+        entity.setTestCaseList(testCaseList);
 
         return toDto(entity);
+    }
+
+    public String getTestCaseInput(String taskId) {
+        Optional<TestCase> testTask = testCaseRepository.findById(taskId);
+        return testTask.map(TestCase::getInput).orElse(null);
     }
 
     private Task toEntity(TaskTeacherDto dto) {
@@ -58,17 +64,17 @@ public class TaskService {
 
         entity.setTeacher(teacher);
 
-        List<TestTask> testTaskList = new ArrayList<>();
+        List<TestCase> testCaseList = new ArrayList<>();
         dto.getTestTaskList().forEach(test -> {
-            TestTask testTask = new TestTask();
-            testTask.setId(test.getId());
-            testTask.setTaskId(entity.getId());
-            testTask.setInput(test.getInput());
-            testTask.setOutput(test.getOutput());
-            testTaskList.add(testTask);
+            TestCase testCase = new TestCase();
+            testCase.setId(test.getId());
+            testCase.setTaskId(entity.getId());
+            testCase.setInput(test.getInput());
+            testCase.setOutput(test.getOutput());
+            testCaseList.add(testCase);
         });
 
-        entity.setTestTaskList(testTaskList);
+        entity.setTestCaseList(testCaseList);
 
 
         //Манипуляции для того, чтобы сохранялась инфа в кросс таблицу Класс-Задание
@@ -93,7 +99,7 @@ public class TaskService {
         dto.setLegend(entity.getLegend());
 
         dto.setTestTaskList(
-                entity.getTestTaskList()
+                entity.getTestCaseList()
                         .stream()
                         .map(TestTaskDto::toDto)
                         .collect(Collectors.toList())

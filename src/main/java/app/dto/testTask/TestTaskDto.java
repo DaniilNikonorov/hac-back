@@ -1,6 +1,6 @@
 package app.dto.testTask;
 
-import app.entity.TestTask;
+import app.entity.TestCase;
 import lombok.Data;
 
 @Data
@@ -12,7 +12,7 @@ public class TestTaskDto {
 
     private String output;
 
-    public static TestTaskDto toDto(TestTask entity) {
+    public static TestTaskDto toDto(TestCase entity) {
         TestTaskDto dto = new TestTaskDto();
         dto.setId(entity.getId());
         dto.setOutput(entity.getOutput());

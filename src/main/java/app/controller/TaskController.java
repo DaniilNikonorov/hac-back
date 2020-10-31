@@ -29,4 +29,9 @@ public class TaskController {
         service.delete(id);
     }
 
+    @GetMapping("/getTestTaskInputById/{id}")
+    public String getTestCaseInputById(@PathVariable String id) {
+        return service.getTestCaseInput(id);
+    }
+
 }
