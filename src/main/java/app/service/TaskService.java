@@ -1,7 +1,7 @@
 package app.service;
 
 import app.dto.task.TaskTeacherDto;
-import app.dto.testTask.TestTaskDto;
+import app.dto.testTask.TestCasesDto;
 import app.entity.ClassSchoolboy;
 import app.entity.Task;
 import app.entity.Teacher;
@@ -50,6 +50,10 @@ public class TaskService {
     public String getTestCaseInput(String taskId) {
         Optional<TestCase> testTask = testCaseRepository.findById(taskId);
         return testTask.map(TestCase::getInput).orElse(null);
+    }
+
+    public List<TestCase> getTestCasesList(String taskId) {
+        return testCaseRepository.findAllByTaskId(taskId);
     }
 
     private Task toEntity(TaskTeacherDto dto) {
@@ -101,7 +105,7 @@ public class TaskService {
         dto.setTestTaskList(
                 entity.getTestCaseList()
                         .stream()
-                        .map(TestTaskDto::toDto)
+                        .map(TestCasesDto::toDto)
                         .collect(Collectors.toList())
         );
 

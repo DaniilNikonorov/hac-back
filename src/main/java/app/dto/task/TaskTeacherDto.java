@@ -1,7 +1,7 @@
 package app.dto.task;
 
 import app.dto.classSchoolboy.ClassSchoolboyDto;
-import app.dto.testTask.TestTaskDto;
+import app.dto.testTask.TestCasesDto;
 import lombok.Data;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class TaskTeacherDto {
 
     private String legend;
 
-    private List<TestTaskDto> testTaskList;
+    private List<TestCasesDto> testTaskList;
 
     private String teacherId;
 

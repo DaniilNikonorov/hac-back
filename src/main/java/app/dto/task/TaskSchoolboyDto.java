@@ -1,6 +1,9 @@
 package app.dto.task;
 
+import app.dto.testTask.TestCasesDto;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class TaskSchoolboyDto {
@@ -12,6 +15,8 @@ public class TaskSchoolboyDto {
     private String description;
 
     private String legend;
+
+    private List<TestCasesDto> testCasesList;
 
     private Integer bestResult;
 }

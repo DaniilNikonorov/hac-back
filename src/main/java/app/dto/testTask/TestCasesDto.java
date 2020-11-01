@@ -4,7 +4,7 @@ import app.entity.TestCase;
 import lombok.Data;
 
 @Data
-public class TestTaskDto {
+public class TestCasesDto {
 
     private String id;
 
@@ -12,8 +12,8 @@ public class TestTaskDto {
 
     private String output;
 
-    public static TestTaskDto toDto(TestCase entity) {
-        TestTaskDto dto = new TestTaskDto();
+    public static TestCasesDto toDto(TestCase entity) {
+        TestCasesDto dto = new TestCasesDto();
         dto.setId(entity.getId());
         dto.setOutput(entity.getOutput());
         dto.setInput(entity.getInput());
