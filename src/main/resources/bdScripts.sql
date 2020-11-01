@@ -96,10 +96,6 @@ values ('1', '1', 'Тестовый инпут', 'Тестовый аутпут'
 insert into public.task_class_cross
 values ('1', '1');
 
-
-insert into public.tries
-values ('1', '1', '1', '1', '15', 'aue', 'aue', 'aue');
-
 insert into public.tries
 values ('2', '1', '1', '1', '25', 'test', 'test', 'test');
 
